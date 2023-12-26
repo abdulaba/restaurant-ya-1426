@@ -78,3 +78,6 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+# Gemas del proyecto
+gem "geocoder"
