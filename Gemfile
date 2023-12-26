@@ -82,3 +82,5 @@ end
 # Gemas del proyecto
 gem "geocoder"
 gem "pg_search"
+
+gem "cloudinary", "~> 1.28"
