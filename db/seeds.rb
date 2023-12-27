@@ -1,56 +1,96 @@
 require "open-uri"
 
-# Borrado de datos
-puts "Borrando datos de las tablas"
+# Borrando todas las tablas
+puts "Borrando datos"
 CategoryRestaurant.destroy_all
-Restaurant.destroy_all
 Category.destroy_all
+Restaurant.destroy_all
 User.destroy_all
+puts "Datos borrados"
 
-
-# Creacion de categorias
-puts "Creando categorias"
-vegana = Category.create!(name: "Vegana")
-vegetariana = Category.create!(name: "Vegetariana")
+# Creando las categorías
+puts "Creando categorías"
 china = Category.create!(name: "China")
+puts china.name
 japonesa = Category.create!(name: "Japonesa")
+puts japonesa.name
 mexicana = Category.create!(name: "Mexicana")
-tradicional = Category.create!(name: "Tradicional")
+puts mexicana.name
+vegana = Category.create!(name: "Vegana")
+puts vegana.name
+vegetariana = Category.create!(name: "Vegetariana")
+puts vegetariana.name
+variada = Category.create!(name: "Variada")
+puts variada.name
 pescados = Category.create!(name: "Pescados")
+puts pescados.name
 mariscos = Category.create!(name: "Mariscos")
+puts mariscos.name
+puts "######### Fin creación de categorías ########"
+puts ""
 
-puts "### Fin creacion de categorias ###"
+# Creando usuarios y sus restaurantes
+puts "Creando usuarios y restaurantes"
+puts "################################################"
 
-# Creacion user
-puts "Creando usuario"
-usuario1 = User.create!(email: "beyda@gmail.com", password: "123456")
+# Creando usuario
+user1 = User.new( email: "sofia@gmail.com", password: "123456" )
 
-# Agrego foto
-file = URI.open("https://avatars.githubusercontent.com/u/144365996?v=4")
-usuario1.photo.attach(io: file, filename: "beyda.png", content_type: "image/png")
+# agregando foto al usuario
+file = URI.open("https://avatars.githubusercontent.com/u/148254339?v=4")
+user1.photo.attach(io: file, filename: "ana.png", content_type: "image/png")
 
-# Guardo en la tabla users
-usuario1.save!
+# Guardando en tabla users
+user1.save!
 
-# Muestro en pantalla el usuario creado
-puts "Se ha creado el usuario: #{usuario1.email}"
+# Mostrando en pantalla
+puts "Usuario #{user1.email} creado. Agregando restaurante "
 
-# Creacion de restaurante y categoria para un usuario
+#Creando restaurante y category
+restaurante1 = user1.restaurants.build(
+  name: "Arch Daily",
+  description: "La mejor comida vegana del caribe",
+  address: "Av Providencia 1250, Providencia, Chile",
+  avg_rating: 4,
+  category_ids: [vegana.id] 
+)
 
-restaurante1 = Restaurant.create!(
-  name: "La cantina", 
-  description: "La mejor comida mexicana y del mundo", 
-  address: "Providencia 1350, Providencia, Chile", 
-  avg_rating: 5,
-  user: usuario1
-  )
-
-  # Agrego foto
-file = URI.open("https://raw.githubusercontent.com/abdulaba/restaurants-images-seed/main/cantina-la-15.jpeg")
-restaurante1.photo.attach(io: file, filename: "la-cantina.png", content_type: "image/png")
-
-# Asigno categoria(s)
-restaurante1.category_ids = [mexicana.id, japonesa.id]
-
-# Guardo en la tabla restaurants
+# Agregando foto al restaurante#
+file = URI.open("https://raw.githubusercontent.com/abdulaba/restaurants-images-seed/main/archdaily-vege.jpeg")
+restaurante1.photo.attach(io: file, filename: "archdaily.png", content_type: "image/png")
+logo= URI.open("https://raw.githubusercontent.com/abdulaba/restaurants-images-seed/main/logo-arch.png")
+restaurante1.logo.attach(io: logo, filename: "logo-arch.png", content_type: "image/png")
 restaurante1.save!
+
+# Mostrando en pantalla
+puts "Restaurant #{restaurante1.name} creado con la(s) categoria(s) #{restaurante1.categories.map(&:name).join(" ")}"
+
+#Creando restaurante y category
+restaurante2 = user1.restaurants.build(
+  name: "Vegano",
+  description: "Ven a disfrutar de todos nuestros productos veganos, frescos y de la mejor calidad",
+  address: "Av Providencia 1700, Providencia, Chile",
+  avg_rating: 5,
+  category_ids: [vegana.id]
+)
+
+# Agregando foto
+file = URI.open("https://raw.githubusercontent.com/abdulaba/restaurants-images-seed/main/vegan.jpeg")
+restaurante2.photo.attach(io: file, filename: "vegan.png", content_type: "image/png")
+logo= URI.open("https://raw.githubusercontent.com/abdulaba/restaurants-images-seed/main/logo-vegan.png")
+restaurante2.logo.attach(io: logo, filename: "logo-vegan.png", content_type: "image/png")
+
+# Guardando en tabla restaurants
+restaurante2.save!
+
+# Mostrando en pantalla
+puts "Restaurant #{restaurante2.name} creado con la(s) categoria(s) #{restaurante1.categories.map(&:name).join(" ")}"
+
+
+
+
+
+
+
+
+

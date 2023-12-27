@@ -1,18 +1,9 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_path "banner-rest.png"%>');">
-  <div class="container text-center">
-      <h1>Restaurants YA!</h1>
-      <a class="btn btn-flat" href="#">Pide YA!</a>
-    <p>Elige a los mejores restaurantes del mundo</p>
-  </div>
-</div>
-<hr>
-
 
 <div class="container mt-3">
   <div class="row mb-5">
     <h6 class="text-warning">Restaurants</h6>
     <% @restaurants.each do |restaurant| %>
-      <div class="col-4">
+      <div class="col-4 mb-2">
         <%= link_to restaurant_path(restaurant), class: "text-decoration-none" do %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for restaurant.photo%>')">
           <%= restaurant.name %>
@@ -23,7 +14,3 @@
   </div>
 </div>
 
-
-  
-
- 

@@ -7,4 +7,5 @@ class User < ApplicationRecord
   # Asociaciones
   has_many :restaurants
   has_one_attached :photo
+  
 end

@@ -1,0 +1,10 @@
+<div class="container w-75 border shadow mt-5 p-3">
+  <%= simple_form_for restaurant do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :address %>
+    <%= f.input :category_ids, as: :select, input_html: { data: { controller: "dropdown" }, multiple: true}, collection: @categories %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit restaurant.new_record? ? "Save" : "Update", class: "btn btn-primary w-100"%>
+  <% end %>
+</div>
