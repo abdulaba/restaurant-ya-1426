@@ -16,20 +16,27 @@
   </div>
 </div>
 <hr>
+<!-- Inicio de mapa-->
+<div style="width: 50%; height: 300px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="pk.eyJ1IjoibG9yZW56b2JjMjAyMyIsImEiOiJjbHBqdWp6aTYwMzNzMmpteXp6MDVoYzkyIn0.Cj9LGQ3Fm3jTAHCpHFuc1g">
+</div>
+<!-- Fin de mapa-->
+
+<hr>
 <h4>Platos</h4>
 <div class="row">
-<% @restaurant.dishes.each do |dish|%>
-  <div class="col-3">
-    <div class="card" style="width: 18rem;">
-      <%= image_tag dish.photo, class: "card-img-top" %>
-      <div class="card-body">
-        <h5 class="card-title"><%= dish.name %></h5>
-      <p class="card-text"><%= dish.description %></p>
-      <p class="text-success">Price: <%= dish.price %></p>
+  <% @restaurant.dishes.each do |dish|%>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag dish.photo, class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= dish.name %></h5>
+          <p class="card-text"><%= dish.description %></p>
+          <p class="text-success">Price: <%= dish.price %></p>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 </div>
-
-

@@ -14,7 +14,7 @@
                 collection: @categories, 
                 label: 'Selecciona una categoría'
                 %>
-    <%= image_tag restaurant.photo, size: "50x50" %><%= f.input :photo, as: :file %>
+    <%= image_tag restaurant.photo, size: "50x50" if restaurant.photo.attached? %><%= f.input :photo, as: :file %>
     <div class="row">
       <div class="col-1 me-5">
         <%= f.submit restaurant.new_record? ? "Guardar" : "Actualizar", class: "btn btn-flat"%>

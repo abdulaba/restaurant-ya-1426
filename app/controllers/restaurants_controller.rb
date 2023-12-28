@@ -7,12 +7,24 @@ class RestaurantsController < ApplicationController
       else
         @restaurants = Restaurant.all
       end
-       
+      
+      @markers = @restaurants.geocoded.map do |flat|
+        {
+          lat: flat.latitude,
+          lng: flat.longitude
+        }
+      end
   end
 
   # GET /restaurants/:id
   def show
     @restaurant = Restaurant.find(params[:id])
+    @markers = [
+      {
+        lat: @restaurant.latitude,
+        lng: @restaurant.longitude
+      }]
+      # [{ lat: 435.3, lng: 43.56 }]
   end
 
   # GET /restaurants/new

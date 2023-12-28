@@ -74,6 +74,19 @@ restaurante2 = user1.restaurants.build(
   category_ids: [vegana.id]
 )
 
+restaurante2 = Restaurant.create!(
+  name: "Vegano",
+  description: "Ven a disfrutar de todos nuestros productos veganos, frescos y de la mejor calidad",
+  address: "Av Providencia 1700, Providencia, Chile",
+  avg_rating: 5,
+  user: user1,
+)
+
+CategoryRestaurant.create(
+  category_id: pescados.id,
+  restaurant_id: restaurante2.id
+)
+
 # Agregando foto
 file = URI.open("https://raw.githubusercontent.com/abdulaba/restaurants-images-seed/main/vegan.jpeg")
 restaurante2.photo.attach(io: file, filename: "vegan.png", content_type: "image/png")
