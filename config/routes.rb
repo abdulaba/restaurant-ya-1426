@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :restaurants do
     resources :dishes, only: [:new, :create]
   end
-  get "my_restaurants", to: "restaurants#my_restaurants"
+  get "my_restaurants", to: "restaurants#my_restaurants", as: :my_restaurants
 end

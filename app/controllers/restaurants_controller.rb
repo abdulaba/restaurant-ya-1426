@@ -2,7 +2,12 @@ class RestaurantsController < ApplicationController
   
   # GET /restaurants 
   def index
-    @restaurants = Restaurant.all
+      if params[:query].present? # "aires"
+        @restaurants = Restaurant.global_search(params[:query])
+      else
+        @restaurants = Restaurant.all
+      end
+       
   end
 
   # GET /restaurants/:id
@@ -44,6 +49,7 @@ class RestaurantsController < ApplicationController
   def destroy
   end
 
+  # GET /my_restaurants
   def my_restaurants
     @restaurants = Restaurant.where(user_id: current_user.id)
   end
