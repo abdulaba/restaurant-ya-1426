@@ -8,4 +8,9 @@ class User < ApplicationRecord
   has_many :restaurants
   has_one_attached :photo # Crear una columna virtual llamada photo en el modelo User
   
+  enum gender: {
+    "Hombre" => 0,
+    "Mujer" => 1,
+    "Prefiero no decir" => 2
+  }
 end
