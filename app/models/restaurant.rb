@@ -1,8 +1,14 @@
 class Restaurant < ApplicationRecord
   # Asociaciones
   belongs_to :user
+
   has_many :category_restaurants
+  # restaurant = Restaurant.last => restaurant.category_restaurants
   has_many :categories, through: :category_restaurants
+  # restaurant = Restaurant.last => restaurant.categories
+
+  #has_and_belongs_to_many :categories
+
   has_one_attached :photo
   has_one_attached :logo
   has_many :dishes
