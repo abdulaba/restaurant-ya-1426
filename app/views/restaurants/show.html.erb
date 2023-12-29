@@ -35,7 +35,7 @@
           <h5 class="card-title"><%= dish.name %></h5>
           <p class="card-text"><%= dish.description %></p>
           <p class="text-success">Price: <%= dish.price %></p>
-          <%= button_to "add al carro",  %>
+          <%= button_to "add al carro", line_items_path(dish_id: dish.id), class: "btn btn-primary bnt-sm" %>
         </div>
       </div>
     </div>

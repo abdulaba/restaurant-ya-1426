@@ -10,4 +10,13 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:last_name, :first_name, :photo]) # Permitir el ingreso de nuevos inputs desde editar el usuario
   end
+
+  private 
+
+  def set_cart 
+    @cart = Cart.find(session[:cart_id]) 
+  rescue ActiveRecord::RecordNotFound
+    @cart = Cart.create
+    session[:cart_id] = @cart.id
+  end
 end

@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   get "my_restaurants", to: "restaurants#my_restaurants", as: :my_restaurants
   resources :line_items, only: :create
+  resources :carts, only: :show
 end
