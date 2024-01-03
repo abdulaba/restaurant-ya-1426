@@ -36,8 +36,14 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user_id = current_user.id
+
     if @restaurant.save
-      redirect_to restaurants_path
+
+      respond_to do |format|
+        format.html { redirect_to restaurants_path, notice: "Bien" }
+        # format.turbo_stream
+      end
+      
     else
       render :new, status: :unprocessable_entity
     end

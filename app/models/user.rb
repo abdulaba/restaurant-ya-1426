@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Asociaciones
-  has_many :restaurants
+  has_many :restaurants, dependent: :destroy
   has_one_attached :photo # Crear una columna virtual llamada photo en el modelo User
   
   enum gender: {

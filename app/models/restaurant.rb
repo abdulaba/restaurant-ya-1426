@@ -4,7 +4,7 @@ class Restaurant < ApplicationRecord
 
   has_many :category_restaurants
   # restaurant = Restaurant.last => restaurant.category_restaurants
-  has_many :categories, through: :category_restaurants
+  has_many :categories, through: :category_restaurants, dependent: :destroy
   # restaurant = Restaurant.last => restaurant.categories
 
   #has_and_belongs_to_many :categories
@@ -14,7 +14,7 @@ class Restaurant < ApplicationRecord
   has_many :dishes
 
   # Validaciones
-	validates :name, :address, length: { minimum: 6, message: "4 caracteres minimo" }
+	validates :name, :address, length: { minimum: 6, message: "6 caracteres minimo" }
 	validates :description, length: { minimum: 15, message: "15 caracteres minimo" }
   
   # Geocoder

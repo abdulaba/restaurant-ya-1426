@@ -1,7 +1,4 @@
-<div class="col-4 mb-2">
-  <%= link_to restaurant_path(restaurant), class: "text-decoration-none" do %>
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for restaurant.photo%>')">
-    <%= restaurant.name %>
-  </div>      
-  <% end  %>   
-</div>
+<td scope="row"><%= image_tag restaurant.photo, size: "40x40" if restaurant.photo.attached? %></td>
+<td><%= restaurant.name %></td>
+<td><%= restaurant.address%></td>
+<td><%= restaurant.created_at.strftime("%d/%m/%Y") %></td>

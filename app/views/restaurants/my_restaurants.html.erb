@@ -1,6 +1,7 @@
 <div class="container mt-5 shadow p-3">
   <h3>Mis restaurantes</h3>
-  <%= link_to "Agregar", new_restaurant_path, class: "btn btn-primary btn-sm" %>
+  <%= link_to "Agregar", new_restaurant_path, class: "btn btn-primary btn-sm", data: {turbo_frame: "new_restaurant"} %>
+  <%= turbo_frame_tag "new_restaurant"%> 
   <hr>
   <table class="table">
   <thead>
@@ -14,24 +15,24 @@
   </thead>
   <tbody>
     <% @restaurants.each do |restaurant| %>
-      <tr>
-        <th scope="row"><%= image_tag restaurant.photo, size: "40x40" %></th>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.address%></td>
-        <td><%= restaurant.created_at.strftime("%d/%m/%Y") %></td>
-        <td>
-          <%= link_to restaurant_path(restaurant.id), class: "text-decoration-none" do %>
-            <i class="fa-solid fa-eye"></i>
-          <% end %> | 
-          <%= link_to edit_restaurant_path(restaurant.id), class: "text-warning text-decoration-none" do %> 
-            <i class="fa-solid fa-pencil"></i>
-          <% end %>
-          | 
-          <%= link_to restaurant_path(restaurant.id), class: "text-danger text-decoration-none" do %>
-            <i class="fa-solid fa-trash-can"></i>
-          <% end %>
-        </td>
-      </tr>
+    <tr>
+      <%= turbo_frame_tag "restaurants" %>
+      <%= turbo_frame_tag "restaurants" do %>
+        <%= render "restaurant", restaurant: restaurant %>
+      <% end %>
+      <td>
+        <%= link_to restaurant_path(restaurant.id), class: "text-decoration-none" do %>
+          <i class="fa-solid fa-eye"></i>
+        <% end %> | 
+        <%= link_to edit_restaurant_path(restaurant.id), class: "text-warning text-decoration-none" do %> 
+          <i class="fa-solid fa-pencil"></i>
+        <% end %>
+        | 
+        <%= link_to restaurant_path(restaurant.id), class: "text-danger text-decoration-none" do %>
+          <i class="fa-solid fa-trash-can"></i>
+        <% end %>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>
