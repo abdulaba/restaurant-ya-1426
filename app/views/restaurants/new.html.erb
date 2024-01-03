@@ -1,4 +1,4 @@
 <h4 class="text-center">Crear restaurant</h4>
-<%= turbo_frame_tag "new_restaurant" do %>
+<%= turbo_frame_tag @restaurant do %>
   <%= render "form", restaurant: @restaurant%>
 <% end %>

@@ -1,4 +1,10 @@
-<td scope="row"><%= image_tag restaurant.photo, size: "40x40" if restaurant.photo.attached? %></td>
-<td><%= restaurant.name %></td>
-<td><%= restaurant.address%></td>
-<td><%= restaurant.created_at.strftime("%d/%m/%Y") %></td>
+<%= turbo_frame_tag restaurant do %>
+<ul>
+  <li>
+    <td scope="row"><%= image_tag restaurant.photo, size: "40x40" if restaurant.photo.attached? %></td>
+    <td><%= restaurant.name %></td>
+    <td><%= restaurant.address%></td>
+    <td><%= restaurant.created_at.strftime("%d/%m/%Y") %></td>
+  </li>
+</ul>
+<% end %>

@@ -38,12 +38,10 @@ class RestaurantsController < ApplicationController
     @restaurant.user_id = current_user.id
 
     if @restaurant.save
-
       respond_to do |format|
-        format.html { redirect_to restaurants_path, notice: "Bien" }
-        # format.turbo_stream
+        format.html { redirect_to my_restaurants_path, notice: "Quote was successfully created." }
+        format.turbo_stream
       end
-      
     else
       render :new, status: :unprocessable_entity
     end
