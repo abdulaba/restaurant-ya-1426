@@ -39,8 +39,8 @@ class RestaurantsController < ApplicationController
 
     if @restaurant.save
       respond_to do |format|
-        format.html { redirect_to my_restaurants_path, notice: "Quote was successfully created." }
-        format.turbo_stream
+        format.html { redirect_to my_restaurants_path, notice: "El restaurant se ha creado satisfactoriamente" }
+        # format.turbo_stream
       end
     else
       render :new, status: :unprocessable_entity
@@ -68,6 +68,7 @@ class RestaurantsController < ApplicationController
   # GET /my_restaurants
   def my_restaurants
     @restaurants = Restaurant.where(user_id: current_user.id)
+    @categories = Category.all
   end
 
   private 

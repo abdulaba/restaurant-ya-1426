@@ -1,28 +1,28 @@
-<div class="container w-75 border shadow mt-5 p-3">
-  <%= simple_form_for restaurant do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :address %>
-    <%= f.input :category_ids, 
-                as: :select,
-                input_html: { 
-                  data: { 
-                    controller: "dropdown" 
-                  }, 
-                  multiple: true,
-                  }, 
-                collection: @categories, 
-                label: 'Selecciona una categoría'
-                %>
-    <%= image_tag restaurant.photo, size: "50x50" if restaurant.photo.attached? %><%= f.input :photo, as: :file %>
-    <div class="row">
-      <div class="col-1 me-5">
-        <%= f.submit restaurant.new_record? ? "Guardar" : "Actualizar", class: "btn btn-flat"%>
-      </div>
-      <div class="col-2">
-        <%= link_to "Volver", my_restaurants_path, class: "btn btn-volver" %>
-      </div>
-    </div>
-  <% end %>
-</div>
 
+        <div class="container w-75 border shadow mt-5 p-3">
+          <%= simple_form_for restaurant do |f| %>
+            <%= f.input :name %>
+            <%= f.input :description %>
+            <%= f.input :address %>
+            <%= f.input :category_ids, 
+                        as: :select,
+                        input_html: { 
+                          data: { 
+                            controller: "dropdown" 
+                          }, 
+                          multiple: true,
+                          }, 
+                        collection: @categories, 
+                        label: 'Selecciona una categoría'
+                        %>
+            <%= image_tag restaurant.photo, size: "50x50" if restaurant.photo.attached? %><%= f.input :photo, as: :file %>
+            <div class="row">
+              <div class="col-1 me-5">
+                <%= f.submit restaurant.new_record? ? "Guardar" : "Actualizar", class: "btn btn-flat"%>
+              </div>
+              <div class="col-2">
+                <%= link_to "Volver", my_restaurants_path, class: "btn btn-volver" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
